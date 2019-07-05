@@ -1,0 +1,176 @@
+CREATE DATABASE IF NOT EXISTS BDconstructora;
+USE  BDconstructora;
+
+create table Obra(
+idobra int primary key auto_increment not null,
+nombreobra varchar (400) not null,
+direccion varchar(500) not null,
+encargado varchar(500) not null,
+nombre_dueño varchar(500) not null,
+fechadeinicio datetime not null,
+fechadetermino datetime not null,
+costofinal decimal(15,2)
+);
+
+create table Proveedor(
+idproveedor int primary key auto_increment not null,
+nombre_empresa varchar(200) not null,  
+direccion varchar(500) not null,
+telefono char(10) not null,
+correo varchar(100) not null,
+imagen varchar(50) default null 
+);
+
+create table Empleado(
+idempleado int primary key auto_increment not null,
+nombre varchar(500) not null,  
+apellidoP varchar(500) not null,
+apellidoM varchar(500) not null,
+telefono char(10) not null,
+tipodeempleado text not null,
+imagen varchar(50) default null ,
+salario_hora decimal(15,2) not null,
+idobra_fk int ,
+CONSTRAINT fk_empleado_obra FOREIGN KEY(idobra_fk) REFERENCES Obra(idobra)
+ON DELETE SET NULL  ON UPDATE SET NULL
+);
+
+create table Registros(
+idregistro int primary key auto_increment not null,
+FechaRegistro datetime not null,
+hora_entrada datetime not null,
+hora_salida datetime not null,
+idempleado_fk int ,
+CONSTRAINT fk_regis_empl FOREIGN KEY(idempleado_fk) REFERENCES Empleado(idempleado)
+ON DELETE SET NULL  ON UPDATE SET NULL
+);
+
+create table Sueldos(
+idsueldo int primary key auto_increment not null,
+sueldo decimal(15,2) not null,
+horas_Trabajadas int not null,
+fechadepago datetime not null,
+idempleado_fk int,
+CONSTRAINT fk_sueldo_empl FOREIGN KEY(idempleado_fk) REFERENCES Empleado(idempleado)
+ON DELETE NO ACTION  ON UPDATE NO ACTION
+);
+
+
+create table Material_bodega(
+idstock int primary key auto_increment not null,
+codigodebarras varchar (500) not null,
+nombre varchar (500) not null,
+marca varchar (500)not null,
+cantidad_existente int not null,
+unidad_medida varchar (500)not null,
+descripcion_material varchar(500) not null,
+imagen varchar(50) default null ,
+idobra_fk int ,
+CONSTRAINT fk_mate_obra FOREIGN KEY(idobra_fk) REFERENCES Obra(idobra)
+ON DELETE SET NULL  ON UPDATE SET NULL
+);
+
+
+
+Create table MaterialEntrada(
+identrada_mat int primary key auto_increment not null,
+codigodebarras varchar (500) not null,
+nombre varchar (500) not null,
+marca varchar (500)not null,
+cantidad int not null,
+unidad_medida varchar (500)not null,
+descripcion varchar (500) not null,
+precio decimal(15,2) not null,
+total decimal(15,2) not null,
+fecha datetime not null,
+imagen varchar(50) default null ,
+idprovedor_fk int ,
+idobra_fk int,
+CONSTRAINT fk_entrada_provedor FOREIGN KEY(idprovedor_fk) REFERENCES Proveedor(idproveedor)
+ON DELETE SET NULL  ON UPDATE SET NULL,
+CONSTRAINT fk_entrada_obra FOREIGN KEY(idobra_fk) REFERENCES Obra(idobra)
+ON DELETE SET NULL  ON UPDATE SET NULL
+);
+
+create table MaterialSalida(
+idsalida_material int primary key auto_increment not null,
+codigodebarras varchar (500) not null,
+nombre varchar (500) not null,
+marca varchar (500)not null,
+cantidad int not null,
+unidad_medida varchar (500)not null,
+descripcion varchar (500) not null,
+fecha datetime not null,
+idbodega_material_fk int ,
+idempleado_fk int ,
+CONSTRAINT fk_salida_bodega FOREIGN KEY(idbodega_material_fk) REFERENCES Material_bodega(idstock)
+ON DELETE SET NULL  ON UPDATE SET NULL,
+CONSTRAINT fk_salida_empleado FOREIGN KEY(idempleado_fk) REFERENCES Empleado(idempleado)
+ON DELETE SET NULL  ON UPDATE SET NULL
+);
+
+
+
+
+create procedure insert_material
+
+		@codigobarras varchar (max) ,
+		@nombre varchar (max) ,
+		@marca varchar (max) ,
+		@cantidad int ,
+		@unidad_medida varchar (max) ,
+		@descripcion text ,
+		@precio decimal(15,2) ,
+		@total decimal(15,2) ,
+		@foto image output,
+		@idprovedor_fk int ,
+		@idobra_fk int 
+
+		as 
+
+		if exists(Select * from bodega_material where codigodebarras=@codigobarras and @idobra_fk=@idobra_fk)
+		begin
+		INSERT INTO `material_bodega` (`codigodebarras`, `nombre`, `marca`, `cantidad_existente`, `unidad_medida`, `descripcion_material`, `imagen`, `idobra_fk`) VALUES ('5423123456', 'Cemento', 'Cemex', '10', 'kilogramos', 'cemento por bulto de 20kg', 'qr.jpg', '1');
+
+		UPDATE bodega_material SET cantidad_existente = cantidad_existente + @cantidad WHERE codigodebarras = @codigobarras and idobra_fk= @idobra_fk
+			update obra Set Costo_Total=Costo_Total+@total where idobra=@idobra_fk;
+		end
+		Else
+		begin
+		end
+
+
+
+CREATE PROCEDURE `insert_material` (
+		codigobarras varchar (200) ,
+		nombre varchar (200) ,
+		marca varchar (200) ,
+		cantidad int ,
+		unidad_medida varchar (200) ,
+		descripcion varchar (200) ,
+		precio decimal(15,2) ,
+		total decimal(15,2) ,
+		foto varchar (200) ,
+		idprovedor_fk int ,
+		idobra int 
+)
+BEGIN
+	IF NOT EXISTS Select * from material_bodega where codigodebarras=codigobarras and idobra_fk=idobra THEN 
+    	INSERT INTO `materialentrada` (`codigodebarras`, `nombre`, `marca`, `cantidad_existente`, `unidad_medida`, `descripcion_material`, `imagen`, `idobra_fk`) VALUES (codigobarras, nombre, marca, cantidad, unidad_medida, descripcion, idobra);
+
+		UPDATE bodega_material SET cantidad_existente = cantidad_existente + cantidad WHERE codigodebarras = codigobarras and idobra_fk= idobra
+			update obra Set Costo_Total=Costo_Total+total where idobra=idobra;
+	else 
+
+	INSERT INTO `materialentrada` (`codigodebarras`, `nombre`, `marca`, `cantidad_existente`, `unidad_medida`, `descripcion_material`, `imagen`, `idobra_fk`) VALUES (codigobarras, nombre, marca, cantidad, unidad_medida, descripcion, idobra);
+
+	INSERT INTO `material_bodega` (`codigodebarras`, `nombre`, `marca`, `cantidad_existente`, `unidad_medida`, `descripcion_material`, `imagen`, `idobra_fk`) VALUES (codigobarras, nombre, marca, cantidad, unidad_medida, descripcion, idobra);
+
+END
+
+
+CALL insert_material(
+  '243452345','CAL','Calhidra',10,'Kilogramos','Cal por bulto de 10kg',300,1000,'qr.jpg',1,1);
+
+
+  
