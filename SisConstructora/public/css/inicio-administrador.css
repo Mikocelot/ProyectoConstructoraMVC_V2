@@ -1,0 +1,115 @@
+
+.grid-container {
+  display: grid;
+  grid-template-columns: auto auto ;
+  padding: 0px;
+  height: 100%;  
+}
+
+
+
+.inicio {
+  position: relative;
+  margin: 20px;
+  width: 1200%;
+
+}
+
+.datos_ad {
+  color: white;
+}
+
+
+
+.azul {
+  background-color: rgb(109, 109, 117);
+}
+
+.proveedores {
+  position: relative;
+  margin: 20px;
+  border-radius: 10px;
+  box-shadow: 1px 1px 10px black;
+}
+
+.tabla_obra {
+
+  width: 720%;
+}
+
+
+.tabla_pro {
+
+  width: 800%;
+}
+
+.tabla_mat {
+
+  width: 50%;
+}
+
+.grid-container-componentes {
+  display: grid;
+  grid-template-columns: auto auto ;
+  padding: 0px;
+  height: 100%;
+  
+}
+
+/* .grid-item {
+  background-color: rgba(255, 255, 255, 0.8);
+  border: 1px solid rgba(0, 0, 0, 0.8);
+  padding: 20px;
+  font-size: 30px;
+  text-align: center;
+} */
+
+.grid-item-demas {
+  padding: 30px;
+  font-size: 20px;
+  width: 100%;
+  text-align: center;
+}
+
+.grid-item-barra {
+  background-color: rgba(53, 52, 52, 0.8);
+  padding: 15px;
+  font-size: 20px;
+}
+
+
+.estilo-tabla {
+  position: relative;
+  margin: 2px;
+  font-size: 15px;
+  
+  
+}
+
+
+.estilo-tarjeta {
+  background-color: rgb(197, 199, 201);
+  position: relative;
+  margin: 20px;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 1px 1px 10px black;
+}
+
+.estilo-formulario {
+    background-color: rgb(197, 199, 201);
+    /* position: relative; */
+    position: relative;
+    margin: 20px;
+    padding: 20px;
+    width: 600px;
+    
+    border-radius: 10px;
+    box-shadow: 1px 1px 10px black;
+}
+
+ body{
+    height:100%;
+    /* background-color: rgb(197, 199, 201); */
+    position: absolute;
+  }

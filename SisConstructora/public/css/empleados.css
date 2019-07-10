@@ -1,0 +1,143 @@
+.color_ {
+    color: white;
+    font-family: 'Century Gothic';
+    font-size: 10px;
+    padding: 10px;
+}
+
+.abajo_tabla {
+  margin-top: 60%;
+}
+
+.fondo_rojo {
+    background-color: red;
+}
+/* 
+.perfil_izquierda {
+  background-color: red;
+  padding: 50%;
+  
+} */
+
+/* .form-estilo {
+  border-radius: 2%;
+  background-color: rgb(197, 199, 201);
+  box-shadow: 1px 1px 10px black;
+} */
+/* 
+.perfil_derecha {
+  background-color: blue;
+
+}
+
+.color_ p {
+    font-size: 20px;
+    padding: 15px;
+}
+
+
+.tiempo {
+    
+    align-items: center;
+} */
+/* 
+ body{
+    height:100%;
+    margin: 0;
+    display: flex;
+
+  } */
+
+  .grid-container {
+    display: grid;
+    grid-template-columns: auto  auto;
+    
+    position: absolute;
+  }
+
+  .grid-item {
+    
+    padding: 5px;
+    font-size: 20px;
+    text-align: center;
+    
+    position: relative;
+  }
+
+  
+.estilo_tabla_em {
+  display: grid;
+  grid-template-columns: auto;
+  
+}
+
+.estilo_letras {
+    
+    font-family: 'Century Gothic';
+    font-size: 15px;
+    padding: 15px;
+}
+
+/* 
+
+.fondo_izquierda {
+    background-color: #272524;
+}
+
+.fondo_derecha {
+    background-color: #A19D9B;
+} */
+
+/* 
+.fondo_rojo {
+    background-color: red;
+    position: relative;
+    margin: 0;
+    padding: 0;
+}
+ */
+/* 
+.perfil {
+    position: relative;
+    margin: 20px;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 1px 1px 10px black;
+}
+ */
+
+ .pa {
+   border-radius: 50px;
+ }
+
+.estilo-formulario {
+    
+    background-color: rgb(197, 199, 201);
+    position: relative;
+    margin: 20px;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 1px 1px 10px black;
+}
+/* 
+ body{
+    height:100%;
+    margin: 0;
+    display: flex;
+  } */
+/* 
+  .cuerpazo{
+    height:100%;
+    margin: 0;
+    position: fixed;
+  } */
+
+.estilo-tarjeta {
+  background-color: rgb(197, 199, 201);
+  position: relative;
+  margin: 20px;
+  /* height: 100%; */
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 1px 1px 10px black;
+}

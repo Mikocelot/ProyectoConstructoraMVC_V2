@@ -1,0 +1,63 @@
+.color_ {
+    color: white;
+    font-family: 'Century Gothic';
+    font-size: 10px;
+    padding: 10px;
+}
+.fondo_rojo {
+    background-color: red;
+}
+
+.perfil_izquierda {
+  background-color: red;
+  padding: 50%;
+  
+}
+
+.form-estilo {
+  border-radius: 2%;
+  background-color: rgb(197, 199, 201);
+  box-shadow: 1px 1px 10px black;
+}
+
+.perfil_derecha {
+  background-color: blue;
+
+}
+
+.color_ p {
+    font-size: 20px;
+    padding: 15px;
+}
+
+
+.tiempo {
+    
+    align-items: center;
+}
+
+ body{
+    height:100%;
+    margin: 0;
+    display: flex;
+
+  }
+
+  .grid-container {
+    display: grid;
+    grid-template-columns: auto  auto;
+
+    /* padding: 5px; */
+
+    position: relative;
+  }
+
+  .grid-item {
+    
+    padding: 5px;
+    font-size: 20px;
+    text-align: center;
+    
+    position: relative;
+  }
+

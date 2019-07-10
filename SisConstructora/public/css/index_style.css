@@ -1,0 +1,56 @@
+*{
+	margin:0px;
+	padding:0px;
+	font-family: verdana;
+	color:#bcbcbc;
+}
+
+
+/*menu lateral*/
+/* el puto contenedor */
+div#barra-lateral{
+	position:fixed;
+	width:70px; /*tamaño que le doy que se vea al inicio*/
+	height:100%;
+	background-color:#2f3030;
+	overflow:hidden;
+	-webkit-transition:width 0.5s cubic-bezier(.61,.01,.37,1);
+}
+/* cuando estoy sobre el menu se vuelve grande y deja ver las opciones del */
+div#barra-lateral:hover{
+	width:230px;
+}
+/* imagen del usuario */
+div#logo-menu{
+	width:40px;
+	height:40px;
+	margin:10px;
+	
+}
+
+/* el menu o parte que solo muestra los iconos */
+div#contenedor-logos-primero{
+	margin-top:70px;
+}
+/* ya no se */
+div.contenedor-logos{
+	margin-top:20px;
+	margin-left:10px;
+	width:130px;
+	height:80px; /*       separacion y orden de la barra de meun  */
+}
+
+/* separacion */
+div.logo{
+	width:80px;
+	height:80px;
+	float: left;
+}
+
+.title-menu{
+	margin-left:90px;
+	line-height: 80px; /* separacion y orden de la barra de meun */
+	font-size: 19px;
+}
+
+

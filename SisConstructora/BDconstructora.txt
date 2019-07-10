@@ -64,10 +64,7 @@ marca varchar (500)not null,
 cantidad_existente int not null,
 unidad_medida varchar (500)not null,
 descripcion_material varchar(500) not null,
-imagen varchar(50) default null ,
-idobra_fk int ,
-CONSTRAINT fk_mate_obra FOREIGN KEY(idobra_fk) REFERENCES Obra(idobra)
-ON DELETE SET NULL  ON UPDATE SET NULL
+imagen varchar(50) default null 
 );
 
 
@@ -83,12 +80,11 @@ descripcion varchar (500) not null,
 precio decimal(15,2) not null,
 total decimal(15,2) not null,
 fecha datetime not null,
-imagen varchar(50) default null ,
 idprovedor_fk int ,
-idobra_fk int,
+idstock_fk int,
 CONSTRAINT fk_entrada_provedor FOREIGN KEY(idprovedor_fk) REFERENCES Proveedor(idproveedor)
 ON DELETE SET NULL  ON UPDATE SET NULL,
-CONSTRAINT fk_entrada_obra FOREIGN KEY(idobra_fk) REFERENCES Obra(idobra)
+CONSTRAINT fk_entrada FOREIGN KEY(idstock_fk) REFERENCES Material_bodega(idstock)
 ON DELETE SET NULL  ON UPDATE SET NULL
 );
 
@@ -109,9 +105,19 @@ CONSTRAINT fk_salida_empleado FOREIGN KEY(idempleado_fk) REFERENCES Empleado(ide
 ON DELETE SET NULL  ON UPDATE SET NULL
 );
 
+CREATE TABLE usuarios (
+   idusuario int primary key auto_increment not null,
+   login varchar(20) NOT NULL,
+   clave varchar(64) NOT NULL,
+   tipodeusuario varchar(100) NOT NULL,
+   idempleado_fk int ,
+   CONSTRAINT fk_usuario_empleado FOREIGN KEY(idempleado_fk) REFERENCES Empleado(idempleado)
+   ON DELETE SET NULL  ON UPDATE SET NULL
+)
 
 
 
+<!--no sirve procedimiento no ejecutar en mysql-->
 create procedure insert_material
 
 		@codigobarras varchar (max) ,
@@ -171,6 +177,11 @@ END
 
 CALL insert_material(
   '243452345','CAL','Calhidra',10,'Kilogramos','Cal por bulto de 10kg',300,1000,'qr.jpg',1,1);
+
+
+
+
+
 
 
   

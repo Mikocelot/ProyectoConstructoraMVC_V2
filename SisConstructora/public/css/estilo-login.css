@@ -1,0 +1,62 @@
+.estilo_letras {
+    
+    font-family: 'Century Gothic';
+    font-size: 15px;
+    padding: 15px;
+}
+h2 {
+    color: white;
+}
+
+
+.fondo_izquierda {
+    background-color: #272524;
+}
+
+.fondo_derecha {
+    background-color: #A19D9B;
+}
+
+
+.fondo_rojo {
+    background-color: red;
+    position: relative;
+    margin: 0;
+    padding: 0;
+}
+
+
+
+
+ body{
+    height:100%;
+    margin: 0;
+    display: flex;
+  }
+
+  .formulario {
+    position: relative;
+    margin: 20px;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 1px 1px 10px black;
+    width: 700px;
+    height: 400px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+  }
+
+
+  ._tiempo_ {
+    position: relative;
+    margin: 20px;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 1px 1px 10px black;
+    width: 400px;
+    height: 400px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+  }

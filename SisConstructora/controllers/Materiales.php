@@ -13,6 +13,9 @@ $precio=isset($_POST["precio"])? limpiarCadena($_POST["precio"]):"";
 
 $imagen=isset($_POST["imagen"])? limpiarCadena($_POST["imagen"]):"";
 $idobra=isset($_POST["idobra"])? limpiarCadena($_POST["idobra"]):"";
+$idproveedor=isset($_POST["idproveedor"])? limpiarCadena($_POST["idproveedor"]):"";
+
+
 
 
 switch ($_GET["op"]) {
@@ -34,11 +37,11 @@ switch ($_GET["op"]) {
 
 			if (empty($idstock))
 			{
-				$rspta=$material->insertar($codigobarras,$nombre,$marca,$cantidadexistente,$unidadmedida,$descripcionmaterial,$imagen,$idobra);
-				echo $rspta ? "Material Registrado :".$codigobarras."hola :".$descripcionmaterial."hola2 :".$imagen : "Material no se puedo Registrar";
+	            $rspta=$material->insertar($codigobarras,$nombre,$marca,$cantidadexistente,$unidadmedida,$descripcionmaterial,$imagen);
+				echo $rspta ? "Material Registrado ": "Material no se puedo Registrar";	
 			}
 			else {
-				$rspta=$material->editar($idstock,$nombre,$marca,$cantidadexistente,$unidadmedida,$descripcionmaterial,$imagen,$idobra);
+				$rspta=$material->editar($idstock,$codigobarras,$nombre,$marca,$cantidadexistente,$unidadmedida,$descripcionmaterial,$imagen);
 				echo $rspta ? "Material Actualizado" : "Materal no se pudo Actualizar";
 			}
 			break;
@@ -63,8 +66,7 @@ switch ($_GET["op"]) {
 	 				"4"=>$reg->unidad_medida,
 	 				"5"=>$reg->descripcion_material,
 	 				"6"=>"<img src='../files/materiales/".$reg->imagen."' height='50px' width='50px' >",
-	 				"7"=>$reg->nombreobra,
-	 				"8"=>'<button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#modal-nuevo-material"  onclick="mostrar('.$reg->idstock.')"><span><img src="../public/Icons/intercambio2.png" width="20" ></span></button>'.
+	 				"7"=>'<button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#modal-nuevo-material"  onclick="mostrar('.$reg->idstock.')"><span><img src="../public/Icons/intercambio2.png" width="20" ></span></button>'.
  					' <button class="btn btn-danger btn-sm" onclick="eliminar('.$reg->idstock.')"><span><img src="../public/Icons/boton-x.png" width="20" ></span></button>'
 
 				);
